@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f3dbe3;
+    color: #4a3a42;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* HERO CON FONDO */
+
+.hero {
+    height: 100vh;
+    background: url("img/portada.jpeg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(243, 219, 227, 0.55);
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: #c06c84;
+    margin: 0;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(192,108,132,0.4);
+}
+
+.subtitulo {
+    margin: 15px 0 30px;
+    color: #6f5460;
+}
+
+button {
+    padding: 12px 30px;
+    border-radius: 40px;
+    border: none;
+    background: #d98ca3;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #c06c84;
+    transform: scale(1.08);
+}
+
+/* MENSAJE */
+
+.mensaje {
+    max-width: 700px;
+    margin: auto;
+    padding: 80px 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1.2s ease;
+    line-height: 1.9;
+}
+
+.mensaje.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* GALERÍA */
+
+.galeria {
+    padding: 80px 20px;
+}
+
+.galeria h2 {
+    font-family: 'Playfair Display', serif;
+    color: #c06c84;
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.grid img {
+    width: 220px;
+    border-radius: 18px;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 25px rgba(200,150,170,0.3);
+}
+
+.grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 35px rgba(192,108,132,0.35);
+}
+
+/* VIDEOS */
+
+.video {
+    padding: 80px 20px;
+}
+
+.video h2 {
+    font-family: 'Playfair Display', serif;
+    color: #c06c84;
+    margin-bottom: 40px;
+}
+
+.video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.video-card {
+    position: relative;
+    transition: transform 0.4s ease;
+}
+
+/* corazones decorativos */
+
+.video-card::before,
+.video-card::after {
+    content: "♡";
+    position: absolute;
+    font-size: 28px;
+    color: #d98ca3;
+    transition: 0.4s ease;
+}
+
+.video-card::before {
+    top: -15px;
+    left: -10px;
+}
+
+.video-card::after {
+    bottom: -15px;
+    right: -10px;
+}
+
+.video-card video {
+    width: 260px;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(200,150,170,0.3);
+}
+
+/* HOVER SUAVE Y ELEGANTE */
+
+.video-card:hover {
+    transform: translateY(-10px);
+}
+
+.video-card:hover video {
+    transform: scale(1.06);
+    box-shadow: 0 25px 50px rgba(192,108,132,0.45);
+}
+
+.video-card:hover::before,
+.video-card:hover::after {
+    transform: scale(1.4);
+    color: #c06c84;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 30px;
+    background: #e9c7d3;
+}
+
+/* LLUVIA DE CORAZONES */
+
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.heart {
+    position: absolute;
+    top: -20px;
+    font-size: 30px;
+    color: rgba(192, 108, 132, 0.95);
+    text-shadow: 0 0 12px rgba(192, 108, 132, 0.7);
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(50vh) translateX(50px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(110vh) translateX(-50px) rotate(360deg);
+        opacity: 0;
+    }
+}
