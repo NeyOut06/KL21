@@ -1,221 +1,3275 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap');
+/* ========================================================= */
+/* FUENTES                                                   */
+/* ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+
+/* ========================================================= */
+/* VARIABLES                                                 */
+/* ========================================================= */
+
+:root {
+
+    --rosa-fondo: #f3dbe3;
+    --rosa-claro: #f8e8ed;
+    --rosa: #d98ca3;
+    --rosa-oscuro: #c06c84;
+    --rosa-profundo: #a95670;
+
+    --vino: #744b5b;
+
+    --texto: #4a3a42;
+
+    --blanco: #fffdfb;
+    --papel: #fffaf7;
+
+    --sombra:
+        0 18px 45px rgba(105, 65, 80, .14);
+
+    --sombra-hover:
+        0 30px 65px rgba(105, 65, 80, .23);
+}
+
+
+/* ========================================================= */
+/* RESET                                                      */
+/* ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
+
     margin: 0;
+
     font-family: 'Poppins', sans-serif;
-    background: #f3dbe3;
-    color: #4a3a42;
-    text-align: center;
+
+    color: var(--texto);
+
+    background: var(--rosa-fondo);
+
     overflow-x: hidden;
 }
 
-/* HERO CON FONDO */
-
-.hero {
-    height: 100vh;
-    background: url("img/portada.jpeg") center/cover no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(243, 219, 227, 0.55);
-}
-
-.hero-text {
-    position: relative;
-    z-index: 2;
-}
-
-.nombre {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    color: #c06c84;
-    margin: 0;
-    letter-spacing: 3px;
-    text-shadow: 0 0 20px rgba(192,108,132,0.4);
-}
-
-.subtitulo {
-    margin: 15px 0 30px;
-    color: #6f5460;
+img,
+video {
+    max-width: 100%;
 }
 
 button {
-    padding: 12px 30px;
-    border-radius: 40px;
-    border: none;
-    background: #d98ca3;
-    color: white;
+    font-family: inherit;
+}
+
+
+/* ========================================================= */
+/* CORAZONES                                                   */
+/* ========================================================= */
+
+.hearts-container {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 2;
+}
+
+.heart {
+
+    position: absolute;
+
+    top: -40px;
+
+    color: rgba(192, 108, 132, .7);
+
+    text-shadow:
+        0 0 10px rgba(192,108,132,.35);
+
+    animation:
+        heartFall linear forwards;
+}
+
+@keyframes heartFall {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .8;
+    }
+
+    50% {
+
+        transform:
+            translateY(50vh)
+            translateX(40px)
+            rotate(180deg);
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            translateX(-40px)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* ========================================================= */
+/* HERO                                                        */
+/* ========================================================= */
+
+.hero {
+
+    position: relative;
+
+    height: 100vh;
+    min-height: 650px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #b99da6;
+
+    overflow: hidden;
+}
+
+/* Imagen de portada separada del contenido para que siempre quede visible */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: 0;
+    background: url("img/portada.jpeg") center center / cover no-repeat;
+    filter: grayscale(100%) contrast(1.12) brightness(.92);
+    transform: translateY(var(--hero-parallax-y, 0px)) scale(1.01);
+}
+
+.hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,235,241,.18),
+            rgba(244,210,222,.12),
+            rgba(255,245,247,.20)
+        );
+
+    backdrop-filter: none;
+}
+
+
+.hero-text {
+
+    position: relative;
+
+    z-index: 3;
+
+    padding: 30px;
+}
+
+
+.hero-small {
+
+    margin: 0 0 15px;
+
+    letter-spacing: 5px;
+
+    font-size: .7rem;
+
+    color: var(--rosa-profundo);
+
+    font-weight: 600;
+}
+
+
+.nombre {
+
+    margin: 0;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(5rem, 13vw, 9rem);
+
+    font-weight: 400;
+
+    color: var(--rosa-oscuro);
+
+    line-height: .95;
+
+    text-shadow:
+        0 5px 20px rgba(160,80,110,.15);
+}
+
+
+.hero-line {
+
+    position: relative;
+
+    width: 180px;
+
+    height: 1px;
+
+    margin: 30px auto;
+
+    background: var(--rosa-oscuro);
+}
+
+
+.hero-line span {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    padding: 0 15px;
+
+    background: #f4dbe4;
+
+    color: var(--rosa-oscuro);
+
+    font-size: 20px;
+}
+
+
+.subtitulo {
+
+    margin: 0 auto 30px;
+
+    max-width: 550px;
+
+    color: var(--vino);
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 1.05rem;
+
+    font-style: italic;
+}
+
+
+.hero button {
+
+    padding: 14px 30px;
+
+    border: 1px solid rgba(192,108,132,.4);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,.8);
+
+    color: var(--rosa-profundo);
+
     cursor: pointer;
-    transition: all 0.3s ease;
+
+    font-size: .85rem;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 10px 30px rgba(100,50,70,.12);
+
+    transition: .35s ease;
 }
 
-button:hover {
-    background: #c06c84;
-    transform: scale(1.08);
+
+.hero button span {
+    margin-left: 8px;
 }
 
-/* MENSAJE */
+
+.hero button:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.04);
+
+    background: white;
+
+    box-shadow:
+        0 18px 35px rgba(100,50,70,.2);
+}
+
+
+/* hero decorations */
+
+.hero-decoration {
+
+    position: absolute;
+
+    z-index: 2;
+
+    color: rgba(192,108,132,.65);
+
+    animation:
+        floatDecoration 5s ease-in-out infinite;
+}
+
+.hero-heart-1 {
+
+    left: 15%;
+
+    top: 22%;
+
+    font-size: 40px;
+}
+
+.hero-heart-2 {
+
+    right: 16%;
+
+    top: 30%;
+
+    font-size: 55px;
+
+    animation-delay: 1s;
+}
+
+.hero-heart-3 {
+
+    left: 22%;
+
+    bottom: 20%;
+
+    font-size: 30px;
+
+    animation-delay: 2s;
+}
+
+@keyframes floatDecoration {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+
+.scroll-indicator {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 4;
+
+    color: var(--rosa-profundo);
+
+    font-size: .65rem;
+
+    letter-spacing: 2px;
+}
+
+.scroll-indicator div {
+
+    font-size: 20px;
+
+    animation:
+        scrollArrow 1.5s infinite;
+}
+
+@keyframes scrollArrow {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+
+/* ========================================================= */
+/* MENSAJE                                                     */
+/* ========================================================= */
 
 .mensaje {
-    max-width: 700px;
-    margin: auto;
-    padding: 80px 20px;
+
+    min-height: 100vh;
+
+    padding: 120px 20px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
     opacity: 0;
-    transform: translateY(30px);
-    transition: 1.2s ease;
-    line-height: 1.9;
+
+    transform: translateY(40px);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
 }
 
+
 .mensaje.visible {
+
     opacity: 1;
+
     transform: translateY(0);
 }
 
-/* GALERÍA */
+
+.letter {
+
+    position: relative;
+
+    width: min(800px, 100%);
+
+    padding: 70px 75px;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.9),
+            rgba(255,250,247,.96)
+        );
+
+    box-shadow: var(--sombra);
+
+    border-radius: 4px;
+
+    text-align: left;
+
+    border:
+        1px solid rgba(210,139,160,.25);
+}
+
+
+.letter::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    border:
+        1px solid rgba(210,139,160,.25);
+
+    pointer-events: none;
+}
+
+
+.letter-decoration {
+
+    text-align: center;
+
+    color: var(--rosa-oscuro);
+
+    font-size: 32px;
+
+    margin-bottom: 20px;
+}
+
+
+.letter-label {
+
+    text-align: center;
+
+    letter-spacing: 4px;
+
+    font-size: .65rem;
+
+    color: var(--rosa-oscuro);
+
+    font-weight: 600;
+}
+
+
+.letter h2 {
+
+    text-align: center;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 3rem;
+
+    font-weight: 400;
+
+    color: var(--rosa-profundo);
+
+    margin: 15px 0;
+}
+
+
+.letter-line {
+
+    width: 100px;
+
+    height: 1px;
+
+    background: var(--rosa);
+
+    margin: 25px auto 45px;
+}
+
+
+.letter p {
+
+    line-height: 2;
+
+    color: #62505a;
+
+    font-size: .95rem;
+}
+
+
+.letter-final {
+
+    text-align: center;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 1.15rem;
+
+    color: var(--rosa-profundo) !important;
+
+    margin-top: 40px;
+}
+
+
+.letter-signature {
+
+    margin-top: 45px;
+
+    text-align: right;
+
+    font-family: 'Playfair Display', serif;
+
+    color: var(--rosa-profundo);
+}
+
+
+/* ========================================================= */
+/* INTRO DEL ÁLBUM                                             */
+/* ========================================================= */
+
+.album-intro {
+
+    position: relative;
+
+    text-align: center;
+
+    padding: 100px 20px 80px;
+}
+
+
+.album-flower {
+
+    font-size: 30px;
+
+    color: var(--rosa);
+}
+
+
+.album-intro p {
+
+    margin: 15px 0 5px;
+
+    font-size: .65rem;
+
+    letter-spacing: 4px;
+
+    color: var(--rosa-profundo);
+
+    font-weight: 600;
+}
+
+
+.album-intro h2 {
+
+    margin: 10px 0;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-weight: 400;
+
+    font-size: clamp(3rem, 7vw, 5rem);
+
+    color: var(--rosa-profundo);
+}
+
+
+.album-date {
+
+    color: #80616d;
+
+    font-family: 'Playfair Display', serif;
+
+    font-style: italic;
+}
+
+
+/* ========================================================= */
+/* TÍTULOS DE SECCIÓN                                          */
+/* ========================================================= */
+
+.section-title {
+
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+
+.section-title > span {
+
+    color: var(--rosa);
+
+    font-size: 28px;
+}
+
+
+.section-title p {
+
+    margin: 12px 0 5px;
+
+    font-size: .65rem;
+
+    letter-spacing: 4px;
+
+    color: var(--rosa-profundo);
+
+    font-weight: 600;
+}
+
+
+.section-title h2 {
+
+    margin: 5px auto 15px;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 3rem;
+
+    font-weight: 400;
+
+    color: var(--rosa-profundo);
+}
+
+
+.section-title small {
+
+    color: #7c6670;
+
+    font-style: italic;
+}
+
+
+/* ========================================================= */
+/* GALERÍA                                                     */
+/* ========================================================= */
 
 .galeria {
-    padding: 80px 20px;
+
+    padding: 100px 30px 130px;
+
+    background:
+        rgba(255,255,255,.15);
 }
 
-.galeria h2 {
+
+.polaroid-gallery {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 30px;
+
+    align-items: start;
+}
+
+
+.polaroid {
+
+    background: var(--blanco);
+
+    padding: 12px 12px 20px;
+
+    box-shadow: var(--sombra);
+
+    transition: .45s ease;
+}
+
+
+.polaroid-image {
+
+    aspect-ratio: 4 / 5;
+
+    overflow: hidden;
+
+    background: #eee;
+}
+
+
+.polaroid-image img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: .7s ease;
+}
+
+
+.polaroid p {
+
+    margin: 15px 4px 0;
+
     font-family: 'Playfair Display', serif;
-    color: #c06c84;
+
+    font-size: .85rem;
+
+    color: #765966;
 }
 
-.grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+
+.polaroid:hover {
+
+    transform:
+        translateY(-15px)
+        rotate(0deg)
+        scale(1.04);
+
+    box-shadow: var(--sombra-hover);
+
+    z-index: 5;
 }
 
-.grid img {
-    width: 220px;
-    border-radius: 18px;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 25px rgba(200,150,170,0.3);
-}
 
-.grid img:hover {
+.polaroid:hover img {
+
     transform: scale(1.05);
-    box-shadow: 0 20px 35px rgba(192,108,132,0.35);
 }
 
-/* VIDEOS */
 
-.video {
-    padding: 80px 20px;
+.polaroid-1 {
+    transform: rotate(-4deg);
 }
 
-.video h2 {
-    font-family: 'Playfair Display', serif;
-    color: #c06c84;
-    margin-bottom: 40px;
+.polaroid-2 {
+    transform: rotate(3deg);
 }
+
+.polaroid-3 {
+    transform: rotate(-2deg);
+}
+
+.polaroid-4 {
+    transform: rotate(4deg);
+}
+
+.polaroid-5 {
+    transform: rotate(-3deg);
+}
+
+
+/* ========================================================= */
+/* VIDEOS                                                      */
+/* ========================================================= */
+
+.video-section {
+
+    padding: 120px 30px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f1d6e0,
+            #f6e4e9
+        );
+}
+
 
 .video-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 60px 50px;
 }
+
 
 .video-card {
+
     position: relative;
-    transition: transform 0.4s ease;
+
+    background: var(--blanco);
+
+    padding: 18px 18px 25px;
+
+    box-shadow: var(--sombra);
+
+    transform: rotate(-1deg);
+
+    transition: .45s ease;
 }
 
-/* corazones decorativos */
-
-.video-card::before,
-.video-card::after {
-    content: "♡";
-    position: absolute;
-    font-size: 28px;
-    color: #d98ca3;
-    transition: 0.4s ease;
-}
-
-.video-card::before {
-    top: -15px;
-    left: -10px;
-}
-
-.video-card::after {
-    bottom: -15px;
-    right: -10px;
-}
-
-.video-card video {
-    width: 260px;
-    border-radius: 20px;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 30px rgba(200,150,170,0.3);
-}
-
-/* HOVER SUAVE Y ELEGANTE */
 
 .video-card:hover {
-    transform: translateY(-10px);
+
+    transform:
+        translateY(-12px)
+        rotate(0deg);
+
+    box-shadow: var(--sombra-hover);
 }
 
-.video-card:hover video {
-    transform: scale(1.06);
-    box-shadow: 0 25px 50px rgba(192,108,132,0.45);
+
+.video-tilt {
+    transform: rotate(2deg);
 }
 
-.video-card:hover::before,
-.video-card:hover::after {
-    transform: scale(1.4);
-    color: #c06c84;
+
+.video-tape {
+
+    position: absolute;
+
+    width: 85px;
+    height: 24px;
+
+    top: -12px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%)
+        rotate(-2deg);
+
+    background:
+        rgba(224,181,192,.7);
+
+    z-index: 3;
 }
 
-/* FOOTER */
+
+.video-number {
+
+    position: absolute;
+
+    top: 28px;
+
+    left: 28px;
+
+    padding: 7px 12px;
+
+    background:
+        rgba(255,250,248,.9);
+
+    color: var(--rosa-profundo);
+
+    font-size: .65rem;
+
+    letter-spacing: 2px;
+
+    z-index: 2;
+}
+
+
+.video-card video {
+
+    width: 100%;
+
+    display: block;
+
+    background: #241a1e;
+
+    max-height: 550px;
+}
+
+
+.video-caption {
+
+    padding: 18px 5px 0;
+}
+
+
+.video-caption span {
+
+    color: var(--rosa-profundo);
+
+    font-size: .6rem;
+
+    letter-spacing: 2px;
+
+    font-weight: 600;
+}
+
+
+.video-caption p {
+
+    margin: 8px 0 0;
+
+    font-family: 'Playfair Display', serif;
+
+    color: #66515b;
+
+    line-height: 1.6;
+}
+
+
+/* ========================================================= */
+/* TIMELINE / ÁLBUM                                             */
+/* ========================================================= */
+
+.timeline {
+
+    position: relative;
+    z-index: 3;
+
+    padding: 130px 30px;
+
+    background:
+        #f3dbe3;
+
+    overflow: hidden;
+}
+
+
+/* textura */
+
+.timeline::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .2;
+
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 5px,
+            rgba(255,255,255,.2) 6px
+        );
+}
+
+
+/* ========================================================= */
+/* CABECERA                                                     */
+/* ========================================================= */
+
+.timeline-heading {
+
+    position: relative;
+
+    z-index: 2;
+
+    text-align: center;
+
+    margin-bottom: 110px;
+}
+
+
+.heading-heart {
+
+    display: block;
+
+    font-size: 32px;
+
+    color: var(--rosa-oscuro);
+
+    margin-bottom: 15px;
+}
+
+
+.eyebrow {
+
+    margin: 0;
+
+    font-size: .65rem;
+
+    letter-spacing: 4px;
+
+    color: var(--rosa-profundo);
+
+    font-weight: 600;
+}
+
+
+.timeline-heading h2 {
+
+    margin: 10px 0 15px;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(3rem, 7vw, 5rem);
+
+    font-weight: 400;
+
+    color: var(--rosa-profundo);
+}
+
+
+.timeline-intro {
+
+    max-width: 650px;
+
+    margin: auto;
+
+    color: #725866;
+
+    line-height: 1.8;
+
+    font-style: italic;
+}
+
+
+.heading-line {
+
+    position: relative;
+
+    width: 180px;
+
+    height: 1px;
+
+    margin: 35px auto 0;
+
+    background: var(--rosa);
+}
+
+
+.heading-line span {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    padding: 0 15px;
+
+    background: var(--rosa-fondo);
+
+    color: var(--rosa-oscuro);
+}
+
+
+/* ========================================================= */
+/* CONTENEDOR                                                  */
+/* ========================================================= */
+
+.timeline-container {
+
+    position: relative;
+    z-index: 3;
+
+    max-width: 1250px;
+
+    margin: auto;
+}
+
+
+/* línea */
+
+.timeline-container::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--rosa) 5%,
+            var(--rosa-oscuro) 50%,
+            var(--rosa) 95%,
+            transparent
+        );
+}
+
+
+/* ========================================================= */
+/* MES                                                           */
+/* ========================================================= */
+
+.month-section {
+
+    position: relative;
+
+    margin-bottom: 180px;
+
+    opacity: 0;
+
+    transform:
+        translateY(45px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+
+.month-section.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* corazón */
+
+.month-marker {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 0;
+
+    width: 54px;
+    height: 54px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #fffafc;
+
+    border:
+        2px solid var(--rosa);
+
+    color: var(--rosa-oscuro);
+
+    font-size: 23px;
+
+    box-shadow:
+        0 8px 25px rgba(192,108,132,.2);
+
+    z-index: 5;
+
+    transition: .4s ease;
+}
+
+
+.month-section:hover .month-marker {
+
+    transform:
+        translateX(-50%)
+        scale(1.15)
+        rotate(10deg);
+
+    box-shadow:
+        0 12px 35px rgba(192,108,132,.3);
+}
+
+
+/* ========================================================= */
+/* HEADER MES                                                   */
+/* ========================================================= */
+
+.month-header {
+
+    position: relative;
+    z-index: 6;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 22px;
+
+    margin-bottom: 25px;
+}
+
+
+.month-number {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 3.5rem;
+
+    color:
+        rgba(192,108,132,.25);
+
+    line-height: 1;
+}
+
+
+.month-small {
+
+    margin: 0 0 5px;
+
+    color: var(--rosa-oscuro);
+
+    font-size: .62rem;
+
+    letter-spacing: 3px;
+
+    font-weight: 600;
+}
+
+
+.month-header h3 {
+
+    margin: 0;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 2.5rem;
+
+    font-weight: 400;
+
+    color: var(--rosa-profundo);
+}
+
+
+/* ========================================================= */
+/* NOTA DEL MES                                                 */
+/* ========================================================= */
+
+.month-note {
+
+    position: relative;
+    z-index: 6;
+
+    max-width: 720px;
+
+    margin: 0 auto 60px;
+
+    padding: 23px 30px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    background:
+        rgba(255,255,255,.68);
+
+    border-left:
+        3px solid var(--rosa);
+
+    box-shadow:
+        0 10px 30px rgba(100,50,70,.08);
+
+    text-align: left;
+}
+
+
+.month-note > span {
+
+    color: var(--rosa-oscuro);
+
+    font-size: 22px;
+}
+
+
+.month-note p {
+
+    margin: 0;
+
+    color: #6f5460;
+
+    line-height: 1.8;
+
+    font-size: .88rem;
+}
+
+
+/* ========================================================= */
+/* GRID FOTOS                                                   */
+/* ========================================================= */
+
+.memory-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 60px 50px;
+
+    align-items: start;
+}
+
+
+/* ========================================================= */
+/* TARJETA                                                      */
+/* ========================================================= */
+
+.memory-card {
+
+    position: relative;
+
+    padding: 18px 18px 25px;
+
+    background:
+        var(--papel);
+
+    box-shadow:
+        var(--sombra);
+
+    transform:
+        rotate(-1.5deg);
+
+    opacity: 0;
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease,
+        opacity .7s ease;
+
+    overflow: visible;
+}
+
+
+.month-section.visible .memory-card {
+
+    opacity: 1;
+
+    animation:
+        cardAppear .8s ease forwards;
+}
+
+
+.month-section.visible .memory-card:nth-child(2) {
+    animation-delay: .12s;
+}
+
+.month-section.visible .memory-card:nth-child(3) {
+    animation-delay: .24s;
+}
+
+.month-section.visible .memory-card:nth-child(4) {
+    animation-delay: .36s;
+}
+
+.month-section.visible .memory-card:nth-child(5) {
+    animation-delay: .48s;
+}
+
+
+@keyframes cardAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            rotate(-4deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            rotate(-1.5deg);
+    }
+}
+
+
+.memory-card.rotate-right {
+
+    transform:
+        rotate(2deg);
+}
+
+
+.memory-card.rotate-left {
+
+    transform:
+        rotate(-3deg);
+}
+
+
+.memory-card:hover {
+
+    transform:
+        translateY(-12px)
+        rotate(0deg)
+        scale(1.02);
+
+    box-shadow:
+        var(--sombra-hover);
+
+    z-index: 10;
+}
+
+
+/* ========================================================= */
+/* CINTA                                                         */
+/* ========================================================= */
+
+.tape {
+
+    position: absolute;
+
+    top: -13px;
+
+    left: 50%;
+
+    width: 95px;
+    height: 27px;
+
+    transform:
+        translateX(-50%)
+        rotate(-2deg);
+
+    background:
+        rgba(225,181,193,.72);
+
+    z-index: 5;
+
+    box-shadow:
+        0 2px 6px rgba(70,30,50,.08);
+}
+
+
+.rotate-right .tape {
+
+    transform:
+        translateX(-50%)
+        rotate(3deg);
+}
+
+
+/* ========================================================= */
+/* FOTO                                                           */
+/* ========================================================= */
+
+.memory-photo {
+
+    position: relative;
+
+    width: 100%;
+
+    background: #eee8e5;
+
+    overflow: hidden;
+
+    border:
+        1px solid #eadfdb;
+}
+
+
+.memory-photo img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-height: 700px;
+
+    object-fit: contain;
+
+    cursor: zoom-in;
+
+    transition:
+        transform .7s ease;
+}
+
+
+.memory-card:hover .memory-photo img {
+
+    transform:
+        scale(1.025);
+}
+
+
+/* ========================================================= */
+/* FECHA                                                          */
+/* ========================================================= */
+
+.photo-date {
+
+    position: absolute;
+
+    left: 14px;
+
+    bottom: 14px;
+
+    padding: 7px 12px;
+
+    background:
+        rgba(255,250,248,.94);
+
+    color: #8b5065;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: .7rem;
+
+    letter-spacing: 1.5px;
+
+    box-shadow:
+        0 4px 12px rgba(50,20,30,.15);
+}
+
+
+/* ========================================================= */
+/* TEXTO                                                         */
+/* ========================================================= */
+
+.memory-info {
+
+    padding:
+        18px 7px 0;
+
+    text-align: left;
+}
+
+
+.memory-label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--rosa-oscuro);
+
+    font-size: .6rem;
+
+    letter-spacing: 2px;
+
+    font-weight: 600;
+}
+
+
+.memory-info p {
+
+    margin: 0;
+
+    color: #5d4a52;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+}
+
+
+/* ========================================================= */
+/* DECORACIONES                                                 */
+/* ========================================================= */
+
+.memory-card::before {
+
+    content: "♡";
+
+    position: absolute;
+
+    top: 12px;
+
+    right: -24px;
+
+    color: var(--rosa);
+
+    font-size: 26px;
+
+    transition: .4s ease;
+}
+
+
+.memory-card::after {
+
+    content: "✿";
+
+    position: absolute;
+
+    bottom: 12px;
+
+    left: -25px;
+
+    color: var(--rosa);
+
+    font-size: 23px;
+
+    opacity: .65;
+
+    transition: .4s ease;
+}
+
+
+.memory-card:hover::before {
+
+    transform:
+        scale(1.35)
+        rotate(15deg);
+}
+
+
+.memory-card:hover::after {
+
+    transform:
+        scale(1.3)
+        rotate(-15deg);
+}
+
+
+/* ========================================================= */
+/* FOTO GRANDE                                                   */
+/* ========================================================= */
+
+.large-memory {
+
+    grid-column:
+        span 2;
+
+    width: min(900px, 100%);
+
+    justify-self: center;
+}
+
+
+/* ========================================================= */
+/* ÚLTIMO MES                                                    */
+/* ========================================================= */
+
+.final-month {
+
+    margin-bottom: 70px;
+}
+
+
+.final-month .month-marker {
+
+    color: white;
+
+    background:
+        var(--rosa-oscuro);
+
+    border-color:
+        var(--rosa-oscuro);
+
+    box-shadow:
+        0 0 0 9px rgba(192,108,132,.12),
+        0 10px 35px rgba(192,108,132,.3);
+}
+
+
+.final-note {
+
+    background:
+        rgba(255,255,255,.85);
+
+    border:
+        1px solid rgba(192,108,132,.25);
+
+    border-left:
+        3px solid var(--rosa-oscuro);
+}
+
+
+/* ========================================================= */
+/* MENSAJE FINAL                                                */
+/* ========================================================= */
+
+.final-message {
+
+    padding: 130px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f5e0e7,
+            #efd2dc
+        );
+}
+
+
+.final-decoration {
+
+    color: var(--rosa-oscuro);
+
+    font-size: 38px;
+
+    margin-bottom: 20px;
+}
+
+
+.final-message p {
+
+    margin: 0 0 10px;
+
+    font-family: 'Playfair Display', serif;
+
+    font-style: italic;
+
+    color: #765866;
+}
+
+
+.final-message h2 {
+
+    margin: 0;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+
+    font-weight: 400;
+
+    color: var(--rosa-profundo);
+}
+
+
+.final-hearts {
+
+    margin-top: 25px;
+
+    color: var(--rosa);
+
+    font-size: 22px;
+}
+
+
+/* ========================================================= */
+/* FOOTER                                                       */
+/* ========================================================= */
 
 footer {
-    padding: 30px;
-    background: #e9c7d3;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    background:
+        #e7c3cf;
+
+    color: #745361;
 }
 
-/* LLUVIA DE CORAZONES */
+
+footer p {
+
+    margin: 0 0 4px;
+
+    font-size: .75rem;
+
+    letter-spacing: 2px;
+}
+
+
+footer strong {
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 1rem;
+
+    color: var(--rosa-profundo);
+}
+
+
+/* ========================================================= */
+/* LIGHTBOX                                                     */
+/* ========================================================= */
+
+.lightbox {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    padding: 30px;
+
+    background:
+        rgba(45,25,33,.92);
+
+    backdrop-filter:
+        blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .35s ease;
+
+    z-index: 2000;
+}
+
+
+.lightbox.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.lightbox img {
+
+    max-width: min(90vw, 1100px);
+
+    max-height: 82vh;
+
+    object-fit: contain;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.4);
+}
+
+
+.lightbox-caption {
+
+    margin-top: 18px;
+
+    color: white;
+
+    font-family: 'Playfair Display', serif;
+
+    font-size: 1rem;
+}
+
+
+.lightbox-close {
+
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(255,255,255,.5);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.1);
+
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+/* ========================================================= */
+/* RESPONSIVE                                                    */
+/* ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .polaroid-gallery {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .video-grid {
+
+        grid-template-columns:
+            1fr;
+            
+        max-width: 700px;
+    }
+
+    .memory-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width: 750px;
+
+        margin: auto;
+    }
+
+    .large-memory {
+
+        grid-column:
+            auto;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .hero {
+
+        min-height: 600px;
+    }
+
+
+    .nombre {
+
+        font-size: 5rem;
+    }
+
+
+    .letter {
+
+        padding:
+            55px 30px;
+    }
+
+
+    .letter h2 {
+
+        font-size: 2.3rem;
+    }
+
+
+    .polaroid-gallery {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 30px;
+    }
+
+
+    .timeline {
+
+        padding:
+            100px 15px;
+    }
+
+
+    .timeline-container::before {
+
+        left: 27px;
+    }
+
+
+    .month-marker {
+
+        left: 27px;
+    }
+
+
+    .month-header {
+
+        justify-content: flex-start;
+
+        margin-left: 70px;
+    }
+
+
+    .month-number {
+
+        font-size: 2.5rem;
+    }
+
+
+    .month-header h3 {
+
+        font-size: 1.8rem;
+    }
+
+
+    .month-note {
+
+        margin-left: 60px;
+    }
+
+
+    .memory-grid {
+
+        margin-left: 45px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .hero-heart-1,
+    .hero-heart-2,
+    .hero-heart-3 {
+
+        display: none;
+    }
+
+
+    .nombre {
+
+        font-size: 4.5rem;
+    }
+
+
+    .subtitulo {
+
+        font-size: .9rem;
+    }
+
+
+    .letter {
+
+        padding:
+            45px 25px;
+    }
+
+
+    .letter h2 {
+
+        font-size: 2rem;
+    }
+
+
+    .polaroid-gallery {
+
+        grid-template-columns:
+            1fr;
+            
+        max-width: 330px;
+    }
+
+
+    .polaroid {
+
+        transform:
+            rotate(-1deg);
+    }
+
+
+    .timeline-heading h2 {
+
+        font-size: 2.7rem;
+    }
+
+
+    .month-header {
+
+        margin-left: 60px;
+    }
+
+
+    .month-header h3 {
+
+        font-size: 1.55rem;
+    }
+
+
+    .month-number {
+
+        display: none;
+    }
+
+
+    .month-note {
+
+        margin-left: 50px;
+
+        padding:
+            18px;
+    }
+
+
+    .memory-grid {
+
+        margin-left: 35px;
+    }
+
+
+    .memory-card {
+
+        padding:
+            12px 12px 20px;
+    }
+
+
+    .photo-date {
+
+        font-size: .6rem;
+
+        padding:
+            6px 9px;
+    }
+
+
+    .memory-info p {
+
+        font-size: .92rem;
+    }
+
+}
+
+
+
+/* ========================================================= */
+/* CORRECCIONES VISUALES FINALES                              */
+/* ========================================================= */
+
+/* La lluvia decorativa nunca debe tapar los títulos de meses. */
+.timeline-heading,
+.timeline-container,
+.month-section,
+.month-header,
+.month-note,
+.memory-grid {
+    isolation: isolate;
+}
+
+/* La fecha de cada foto también queda por encima de decoraciones. */
+.photo-date {
+    z-index: 8;
+}
+
+/* En pantallas pequeñas, la portada conserva el contraste. */
+@media (max-width: 768px) {
+    .hero::before {
+        background-position: center center;
+    }
+}
+
+
+/* ========================================================= */
+/* CORAZONES EN TODA LA PÁGINA                               */
+/* ========================================================= */
 
 .hearts-container {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
     overflow: hidden;
-    z-index: 999;
+    z-index: 20;
 }
 
 .heart {
     position: absolute;
-    top: -20px;
-    font-size: 30px;
-    color: rgba(192, 108, 132, 0.95);
-    text-shadow: 0 0 12px rgba(192, 108, 132, 0.7);
-    animation: fall linear forwards;
+    top: -50px;
+    color: rgba(192, 108, 132, .62);
+    text-shadow: 0 0 10px rgba(192,108,132,.22);
+    animation: heartFall linear forwards;
+    will-change: transform, opacity;
 }
 
-@keyframes fall {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 1;
+/* El contenido importante queda por encima de la lluvia. */
+.hero-text,
+.scroll-indicator,
+.timeline-heading,
+.month-header,
+.month-note,
+.memory-grid,
+.video-heading,
+.video-grid,
+.letter,
+.album-intro,
+.final-message,
+footer {
+    position: relative;
+    z-index: 30;
+}
+
+/* ========================================================= */
+/* TIMELINE: CORAZÓN ARRIBA + FECHA DEBAJO                   */
+/* ========================================================= */
+
+.month-section {
+    position: relative;
+    padding-top: 82px;
+}
+
+.month-marker {
+    top: 0;
+    z-index: 35;
+}
+
+.month-header {
+    margin-bottom: 28px;
+}
+
+/* La línea pasa por detrás del marcador, nunca por encima. */
+.timeline-container::before {
+    z-index: 0;
+}
+
+/* El número y el nombre del mes quedan claramente debajo del corazón. */
+.month-header > * {
+    position: relative;
+    z-index: 36;
+}
+
+/* ========================================================= */
+/* VIDEOS NOSTÁLGICOS                                        */
+/* ========================================================= */
+
+.video-card {
+    position: relative;
+    z-index: 31;
+}
+
+.video-card video {
+    width: 100%;
+    display: block;
+    background: #241a1e;
+    max-height: 550px;
+    object-fit: cover;
+}
+
+/* En móvil la línea está a la izquierda: mantenemos el corazón
+   arriba y la fecha debajo, sin superposición. */
+@media (max-width: 768px) {
+    .month-section {
+        padding-top: 76px;
     }
-    50% {
-        transform: translateY(50vh) translateX(50px) rotate(180deg);
+
+    .month-header {
+        margin-left: 70px;
+        margin-bottom: 25px;
     }
+}
+
+@media (max-width: 500px) {
+    .month-section {
+        padding-top: 70px;
+    }
+
+    .month-header {
+        margin-left: 60px;
+    }
+}
+
+
+/* ========================================================= */
+/* CORRECCIÓN DEFINITIVA DE LA LÍNEA DEL TIEMPO              */
+/* ========================================================= */
+
+/*
+   IMPORTANTE:
+   Los meses ya NO dependen de JavaScript para ser visibles.
+   Si JavaScript falla, el contenido seguirá apareciendo.
+*/
+
+.timeline-container {
+    position: relative;
+    z-index: 3;
+}
+
+
+/* --------------------------------------------------------- */
+/* MESES                                                      */
+/* --------------------------------------------------------- */
+
+.month-section {
+    position: relative;
+
+    /*
+       Antes:
+       opacity: 0;
+
+       Eso hacía que un error de JavaScript
+       pudiera dejar un mes completamente invisible.
+    */
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+    margin-bottom: 180px;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+/*
+   La clase visible sigue funcionando,
+   pero ya no es necesaria para mostrar el mes.
+*/
+
+.month-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* --------------------------------------------------------- */
+/* CORAZÓN DEL MES                                            */
+/* --------------------------------------------------------- */
+
+.month-marker {
+    position: absolute;
+
+    left: 50%;
+    top: 0;
+
+    width: 54px;
+    height: 54px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fffafc;
+
+    border:
+        2px solid var(--rosa);
+
+    color:
+        var(--rosa-oscuro);
+
+    font-size: 23px;
+
+    box-shadow:
+        0 8px 25px rgba(192,108,132,.2);
+
+    z-index: 40;
+
+    pointer-events: none;
+}
+
+
+/* --------------------------------------------------------- */
+/* FECHA / TÍTULO DEL MES DEBAJO DEL CORAZÓN                 */
+/* --------------------------------------------------------- */
+
+.month-header {
+    position: relative;
+
+    z-index: 41;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 22px;
+
+    /*
+       Dejamos espacio para que el corazón
+       nunca se superponga con "Julio 2025",
+       "Agosto 2025", etc.
+    */
+
+    padding-top: 72px;
+
+    margin-bottom: 30px;
+}
+
+
+/* Número 01, 02, 03... */
+
+.month-number {
+    position: relative;
+    z-index: 42;
+}
+
+
+/* Texto pequeño */
+
+.month-small {
+    position: relative;
+    z-index: 42;
+}
+
+
+/* Julio 2025 / Agosto 2025 / Septiembre 2025 */
+
+.month-header h3 {
+    position: relative;
+
+    z-index: 42;
+
+    margin: 0;
+
+    font-family:
+        'DM Serif Display',
+        serif;
+
+    font-size: 2.5rem;
+
+    font-weight: 400;
+
+    color:
+        var(--rosa-profundo);
+}
+
+
+/* --------------------------------------------------------- */
+/* NOTA DEL MES                                               */
+/* --------------------------------------------------------- */
+
+.month-note {
+    position: relative;
+
+    z-index: 41;
+}
+
+
+/* --------------------------------------------------------- */
+/* FOTOS                                                      */
+/* --------------------------------------------------------- */
+
+.memory-grid {
+    position: relative;
+
+    z-index: 41;
+}
+
+
+/*
+   Las tarjetas tampoco dependerán de JavaScript
+   para aparecer.
+*/
+
+.memory-card {
+    opacity: 1 !important;
+}
+
+
+/* --------------------------------------------------------- */
+/* FOTOS Y VIDEOS                                             */
+/* --------------------------------------------------------- */
+
+.memory-photo img,
+.memory-photo video {
+    width: 100%;
+
+    display: block;
+
+    max-width: 100%;
+}
+
+
+/* Video dentro de la línea del tiempo */
+
+.memory-photo video {
+    background: #241a1e;
+
+    width: 100%;
+
+    max-height: 700px;
+
+    object-fit: contain;
+
+    cursor: pointer;
+
+    display: block;
+}
+
+
+/* --------------------------------------------------------- */
+/* FECHA SOBRE LAS FOTOS                                      */
+/* --------------------------------------------------------- */
+
+.photo-date {
+    position: absolute;
+
+    left: 14px;
+    bottom: 14px;
+
+    z-index: 50;
+
+    padding: 7px 12px;
+
+    background:
+        rgba(255,250,248,.94);
+
+    color:
+        #8b5065;
+
+    font-family:
+        'Playfair Display',
+        serif;
+
+    font-size: .7rem;
+
+    letter-spacing: 1.5px;
+
+    box-shadow:
+        0 4px 12px rgba(50,20,30,.15);
+
+    pointer-events: none;
+}
+
+
+/* --------------------------------------------------------- */
+/* CORAZONES QUE CAEN                                         */
+/* --------------------------------------------------------- */
+
+.hearts-container {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    /*
+       Los corazones están delante del fondo,
+       pero detrás del contenido.
+    */
+
+    z-index: 20;
+}
+
+
+.heart {
+    position: absolute;
+
+    top: -50px;
+
+    color:
+        rgba(192,108,132,.55);
+
+    text-shadow:
+        0 0 10px rgba(192,108,132,.20);
+
+    animation:
+        heartFall linear forwards;
+
+    pointer-events: none;
+
+    will-change:
+        transform,
+        opacity;
+}
+
+
+/*
+   Todo el contenido importante queda
+   por encima de los corazones.
+*/
+
+.hero-text,
+.scroll-indicator,
+
+.timeline-heading,
+.timeline-container,
+.month-section,
+.month-marker,
+.month-header,
+.month-note,
+.memory-grid,
+.memory-card,
+
+.video-heading,
+.video-grid,
+
+.letter,
+.album-intro,
+.final-message,
+footer {
+    position: relative;
+    z-index: 30;
+}
+
+
+/*
+   El corazón específico del mes debe estar
+   incluso por encima del contenido del mes.
+*/
+
+.month-marker {
+    z-index: 40;
+}
+
+.month-header {
+    z-index: 41;
+}
+
+.month-note,
+.memory-grid {
+    z-index: 41;
+}
+
+
+/* ========================================================= */
+/* RESPONSIVE                                                 */
+/* ========================================================= */
+
+@media (max-width: 768px) {
+
+    .month-section {
+        margin-bottom: 130px;
+    }
+
+
+    .month-marker {
+        left: 27px;
+    }
+
+
+    .month-header {
+        justify-content: flex-start;
+
+        margin-left: 70px;
+
+        padding-top: 70px;
+
+        gap: 15px;
+    }
+
+
+    .month-header h3 {
+        font-size: 1.8rem;
+    }
+
+
+    .month-number {
+        font-size: 2.5rem;
+    }
+
+
+    .month-note {
+        margin-left: 60px;
+    }
+
+
+    .memory-grid {
+        margin-left: 45px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .month-header {
+        margin-left: 60px;
+
+        padding-top: 65px;
+    }
+
+
+    .month-header h3 {
+        font-size: 1.55rem;
+    }
+
+
+    .month-number {
+        display: none;
+    }
+
+
+    .month-note {
+        margin-left: 50px;
+    }
+
+
+    .memory-grid {
+        margin-left: 35px;
+    }
+
+}
+
+
+/* ========================================================= */
+/* VIDEOS DE LA LÍNEA DEL TIEMPO                             */
+/* ========================================================= */
+
+.memory-photo video {
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+
+.memory-card:hover .memory-photo video {
+    transform: scale(1.01);
+}
+
+
+/*
+   Cursor para indicar que el video se puede abrir.
+*/
+
+.memory-photo video {
+    cursor: pointer;
+}
+
+/* ========================================================= */
+/* BOTÓN DE MÚSICA DE FONDO                                  */
+/* ========================================================= */
+
+.boton-musica {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, .7);
+
+    background:
+        rgba(255, 245, 248, .88);
+
+    color:
+        var(--rosa-profundo);
+
+    font-size: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 5000;
+
+    box-shadow:
+        0 8px 25px rgba(90, 40, 55, .18);
+
+    backdrop-filter:
+        blur(8px);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+
+.boton-musica:hover {
+
+    transform:
+        scale(1.08);
+
+    box-shadow:
+        0 12px 30px rgba(90, 40, 55, .25);
+
+}
+
+
+.boton-musica.reproduciendo {
+
+    background:
+        rgba(255, 220, 230, .95);
+
+    animation:
+        musicaPulso 2s infinite;
+}
+
+
+@keyframes musicaPulso {
+
+    0%,
     100% {
-        transform: translateY(110vh) translateX(-50px) rotate(360deg);
-        opacity: 0;
+        box-shadow:
+            0 8px 25px rgba(192, 108, 132, .18);
     }
+
+    50% {
+        box-shadow:
+            0 8px 32px rgba(192, 108, 132, .40);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .boton-musica {
+
+        right: 16px;
+        bottom: 16px;
+
+        width: 46px;
+        height: 46px;
+
+        font-size: 18px;
+
+    }
+
+}
+
+/* ========================================================= */
+/* CARTA FINAL                                               */
+/* ========================================================= */
+
+.final-letter {
+    position: relative;
+
+    width: 100%;
+
+    padding:
+        120px 20px 150px;
+
+    box-sizing: border-box;
+}
+
+
+/* Papel de la carta */
+
+.final-letter .letter-paper {
+
+    width:
+        min(780px, 90%);
+
+    margin:
+        0 auto;
+
+    padding:
+        70px 75px;
+
+    box-sizing: border-box;
+
+    background:
+        rgba(255, 250, 248, .94);
+
+    border:
+        1px solid rgba(192, 108, 132, .18);
+
+    box-shadow:
+        0 20px 60px rgba(70, 30, 45, .12);
+
+    position: relative;
+
+}
+
+
+/* Pequeño detalle decorativo */
+
+.final-letter .letter-paper::before {
+
+    content: "♡";
+
+    position: absolute;
+
+    top: 25px;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        var(--rosa);
+
+    font-size: 20px;
+
+    opacity: .7;
+
+}
+
+
+/* Saludo */
+
+.final-letter .letter-greeting {
+
+    font-family:
+        'DM Serif Display',
+        serif;
+
+    font-size:
+        1.7rem;
+
+    color:
+        var(--rosa-profundo);
+
+    margin-bottom:
+        35px;
+
+}
+
+
+/* Párrafos */
+
+.final-letter .letter-paper p {
+
+    font-family:
+        'Playfair Display',
+        serif;
+
+    font-size:
+        1.05rem;
+
+    line-height:
+        2;
+
+    color:
+        #624f56;
+
+    margin:
+        0 0 25px;
+
+    text-align:
+        left;
+
+}
+
+
+/* Últimas frases */
+
+.final-letter .letter-paper p:last-child {
+
+    margin-top:
+        40px;
+
+    margin-bottom:
+        0;
+
+    font-family:
+        'DM Serif Display',
+        serif;
+
+    font-size:
+        1.35rem;
+
+    line-height:
+        1.8;
+
+    color:
+        var(--rosa-profundo);
+
+    text-align:
+        center;
+
+    font-style:
+        italic;
+
+}
+
+
+/* --------------------------------------------------------- */
+/* MÓVIL                                                      */
+/* --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+    .final-letter {
+
+        padding:
+            80px 15px 100px;
+
+    }
+
+
+    .final-letter .letter-paper {
+
+        width:
+            94%;
+
+        padding:
+            55px 30px;
+
+    }
+
+
+    .final-letter .letter-paper p {
+
+        font-size:
+            .98rem;
+
+        line-height:
+            1.85;
+
+    }
+
+
+    .final-letter .letter-greeting {
+
+        font-size:
+            1.5rem;
+
+    }
+
+
+    .final-letter .letter-paper p:last-child {
+
+        font-size:
+            1.15rem;
+
+    }
+
+}
+
+/* ========================================================= */
+/* SPOTIFY — NUESTRA MÚSICA                                  */
+/* ========================================================= */
+
+.spotify-section {
+
+    width: 100%;
+
+    max-width: 950px;
+
+    margin:
+        120px auto 160px;
+
+    padding:
+        0 25px;
+
+    box-sizing:
+        border-box;
+
+    text-align:
+        center;
+
+}
+
+
+.spotify-header {
+
+    margin-bottom:
+        40px;
+
+}
+
+
+.spotify-header .section-kicker {
+
+    margin-bottom:
+        12px;
+
+    font-size:
+        .75rem;
+
+    letter-spacing:
+        4px;
+
+    color:
+        var(--rosa);
+
+}
+
+
+.spotify-header h2 {
+
+    margin:
+        0 0 18px;
+
+    font-family:
+        'DM Serif Display',
+        serif;
+
+    font-size:
+        clamp(2rem, 5vw, 3.2rem);
+
+    font-weight:
+        400;
+
+    color:
+        var(--rosa-profundo);
+
+}
+
+
+.spotify-subtitle {
+
+    max-width:
+        600px;
+
+    margin:
+        0 auto;
+
+    font-family:
+        'Playfair Display',
+        serif;
+
+    font-size:
+        1rem;
+
+    line-height:
+        1.8;
+
+    color:
+        #80656e;
+
+}
+
+
+/* --------------------------------------------------------- */
+/* REPRODUCTOR                                               */
+/* --------------------------------------------------------- */
+
+.spotify-player {
+
+    width:
+        100%;
+
+    max-width:
+        800px;
+
+    margin:
+        0 auto;
+
+    border-radius:
+        18px;
+
+    overflow:
+        hidden;
+
+    background:
+        #191414;
+
+    box-shadow:
+        0 25px 60px
+        rgba(70, 30, 45, .18);
+
+}
+
+
+.spotify-player iframe {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    min-height:
+        500px;
+
+    border:
+        0;
+
+}
+
+
+/* --------------------------------------------------------- */
+/* MÓVIL                                                      */
+/* --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .spotify-section {
+
+        margin:
+            90px auto 110px;
+
+        padding:
+            0 15px;
+
+    }
+
+
+    .spotify-header h2 {
+
+        font-size:
+            2rem;
+
+    }
+
+
+    .spotify-subtitle {
+
+        font-size:
+            .95rem;
+
+    }
+
+
+    .spotify-player {
+
+        border-radius:
+            14px;
+
+    }
+
+
+    .spotify-player iframe {
+
+        min-height:
+            500px;
+
+    }
+
 }
